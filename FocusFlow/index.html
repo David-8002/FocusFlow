@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>FocusFlow</title>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+    <div class="logo">
+        <h1>Focus<span>Flow</span></h1>
+        <p class="subtitle" id="greeting"></p>
+    </div>
+
+    <div class="header-actions">
+        <button class="icon-btn" id="notificationBtn">🔔</button>
+        <button class="icon-btn" id="themeBtn">🌙</button>
+    </div>
+</header>
+
+
+<!-- DATE -->
+
+<section class="date-bar">
+
+    <div>
+        <div class="date-title" id="dateTitle"></div>
+        <div class="subtitle">
+            Your plan for this day
+        </div>
+    </div>
+
+    <div class="date-buttons">
+        <button class="small-btn" id="previousDay">←</button>
+        <button class="small-btn" id="todayButton">Today</button>
+        <button class="small-btn" id="nextDay">→</button>
+    </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section class="dashboard">
+
+    <div class="stat">
+        <div class="stat-label">Today's Tasks</div>
+        <div class="stat-number" id="totalToday">0</div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-label">Completed</div>
+        <div class="stat-number" id="completedToday">0</div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-label">Progress</div>
+        <div class="stat-number" id="progressText">0%</div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-label">🔥 Streak</div>
+        <div class="stat-number">
+            <span id="streak">0</span> days
+        </div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-label">⏱ Focus Minutes</div>
+        <div class="stat-number">
+            <span id="focusMinutes">0</span>
+        </div>
+    </div>
+
+</section>
+
+
+<div class="main-grid">
+
+<main>
+
+<!-- ADD TASK -->
+
+<section class="card">
+
+    <h2>➕ Add Task</h2>
+
+    <div class="form-grid">
+
+        <input
+            id="taskInput"
+            type="text"
+            placeholder="What needs to be done?"
+        >
+
+        <select id="priorityInput">
+            <option value="high">🔴 High</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="low">🟢 Low</option>
+        </select>
+
+        <button class="primary-btn" id="addBtn">
+            Add Task
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- TASKS -->
+
+<section class="card">
+
+    <div class="controls">
+
+        <input
+            id="search"
+            placeholder="🔍 Search..."
+        >
+
+        <select id="filter">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+            <option value="high">High Priority</option>
+            <option value="overdue">Overdue</option>
+            <option value="recurring">Recurring</option>
+        </select>
+
+        <select id="sort">
+            <option value="priority">Priority</option>
+            <option value="created">Newest</option>
+            <option value="due">Due Time</option>
+            <option value="alphabetical">A-Z</option>
+        </select>
+
+    </div>
+
+    <div class="task-list" id="taskList"></div>
+
+</section>
+
+
+<!-- HISTORY -->
+
+<section class="card">
+
+    <h2>📊 Daily History</h2>
+
+    <div class="history-list" id="historyList"></div>
+
+</section>
+
+</main>
+
+
+<!-- SIDEBAR -->
+
+<aside>
+
+<!-- TIMER -->
+
+<section class="card timer-card">
+
+    <h2>🎯 Focus Timer</h2>
+
+    <p class="subtitle">
+        Focus on one task.
+    </p>
+
+    <div class="timer-modes">
+
+        <button class="mode active" data-min="25">
+            25m
+        </button>
+
+        <button class="mode" data-min="50">
+            50m
+        </button>
+
+        <button class="mode" data-min="5">
+            Break
+        </button>
+
+    </div>
+
+    <div class="timer" id="timer">
+        25:00
+    </div>
+
+    <div class="timer-buttons">
+
+        <button class="primary-btn" id="startTimer">
+            Start
+        </button>
+
+        <button class="secondary-btn" id="resetTimer">
+            Reset
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- GOAL -->
+
+<section class="card">
+
+    <h2>🎯 Daily Goal</h2>
+
+    <div class="goal-row">
+        <span>Completed</span>
+        <strong id="goalText">0 / 5</strong>
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar" id="goalBar"></div>
+    </div>
+
+    <br>
+
+    <input
+        type="number"
+        id="goalInput"
+        min="1"
+        max="100"
+        placeholder="Daily target"
+    >
+
+</section>
+
+
+<!-- RECURRING -->
+
+<section class="card">
+
+    <h2>🔄 Recurring Tasks</h2>
+
+    <p class="subtitle" style="line-height:1.6">
+        Create tasks that automatically appear
+        every day or on selected days.
+    </p>
+
+    <br>
+
+    <button class="primary-btn" id="recurringBtn">
+        Create Recurring Task
+    </button>
+
+</section>
+
+
+<!-- MOTIVATION -->
+
+<section class="card">
+
+    <h2>💡 Focus Tip</h2>
+
+    <p
+        id="tip"
+        class="subtitle"
+        style="line-height:1.6">
+    </p>
+
+</section>
+
+</aside>
+
+</div>
+
+</div>
+
+
+<!-- TASK MODAL -->
+
+<div class="modal" id="taskModal">
+
+<div class="modal-content">
+
+    <div class="modal-header">
+        <h2 id="modalTitle">Edit Task</h2>
+
+        <button
+            class="icon-btn"
+            id="closeModal">
+            ✕
+        </button>
+    </div>
+
+
+    <div class="form-group">
+
+        <label>Task</label>
+
+        <input id="editTitle">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>Due date & time</label>
+
+        <input
+            id="editDue"
+            type="datetime-local">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>Category</label>
+
+        <select id="editCategory">
+
+            <option>Study</option>
+            <option>Coding</option>
+            <option>Work</option>
+            <option>LifeFix</option>
+            <option>Fitness</option>
+            <option>Personal</option>
+            <option>Other</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>Notes</label>
+
+        <textarea
+            id="editNotes"
+            rows="4"
+            placeholder="Why is this task important?"></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            <input
+                type="checkbox"
+                id="editRecurring">
+            Repeat this task
+        </label>
+
+    </div>
+
+
+    <div id="repeatOptions" style="display:none">
+
+        <div class="form-group">
+
+            <label>Repeat</label>
+
+            <select id="repeatType">
+
+                <option value="daily">
+                    Every day
+                </option>
+
+                <option value="weekdays">
+                    Monday-Friday
+                </option>
+
+                <option value="weekly">
+                    Every week
+                </option>
+
+                <option value="custom">
+                    Selected days
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div
+            class="form-group"
+            id="customDays"
+            style="display:none">
+
+            <label>Days</label>
+
+            <div class="days">
+
+                <button class="day-btn" data-day="1">Mon</button>
+                <button class="day-btn" data-day="2">Tue</button>
+                <button class="day-btn" data-day="3">Wed</button>
+                <button class="day-btn" data-day="4">Thu</button>
+                <button class="day-btn" data-day="5">Fri</button>
+                <button class="day-btn" data-day="6">Sat</button>
+                <button class="day-btn" data-day="0">Sun</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="modal-footer">
+
+        <button
+            class="secondary-btn"
+            id="cancelModal">
+            Cancel
+        </button>
+
+        <button
+            class="primary-btn"
+            id="saveTask">
+            Save
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
